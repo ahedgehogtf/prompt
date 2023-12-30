@@ -317,6 +317,10 @@ func (term *Terminal) read(in *bufio.Reader) (int, rune, error) {
 
 				if extEsc[0] == '~' {
 					switch esc[1] {
+					case '1':
+						return evHome, char, err
+					case '4':
+						return evEnd, char, err
 					case '2', '5', '6':
 						// Insert, pgup, pgdown.
 						return evSkip, char, err
